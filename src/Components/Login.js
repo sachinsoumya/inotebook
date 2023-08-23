@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
+
 const lurl = "https://notebookback.onrender.com"
 
 const Login = (props) => {
-    const [credentials, setcredentials] = useState({email: '' , password:''})
+
+    const [credentials, setcredentials] = useState({ email: '', password: '' })
     let history = useHistory();
 
     const handleSubmit = async (e) => {
@@ -18,16 +20,16 @@ const Login = (props) => {
         });
         const json = await response.json()
         console.log(json);
-        if (json.success){
+        if (json.success) {
             //save the auth token and redirect it
-            localStorage.setItem('token' , json.authtoken);
-            props.showAlert("Logged in created Sucessfully","success")
+            localStorage.setItem('token', json.authtoken);
+            props.showAlert("Logged in created Sucessfully", "success")
             history.push("/");
-            
+
 
         }
-        else{
-            props.showAlert("Invalid Credentials","danger")
+        else {
+            props.showAlert("Invalid Credentials", "danger")
         }
 
     }
@@ -36,10 +38,13 @@ const Login = (props) => {
     const onChange = (e) => {
         console.log('event');
         //console.log(credentials);
-        setcredentials({...credentials, [e.target.id]: e.target.value });
-        
+        setcredentials({ ...credentials, [e.target.id]: e.target.value });
+
 
     }
+
+
+
     return (
         <div className='mt-3'>
             <h2 className='m-3'>Login to continue iNotebook</h2>
